@@ -96,8 +96,11 @@ fun LabeledComposableSliderPreview() {
 @Composable
 fun LabeledComposableCheckBoxPreview() {
     ComposableParameterExampleTheme {
-        LabeledComposable(text = "Do you like it?") {
-            Switch(checked = true, onCheckedChange = {})
-        }
+        LabeledComposable(
+            text = "Do you like it?",
+            content = {
+                Switch(checked = true, onCheckedChange = {})
+            }
+        )
     }
 }
