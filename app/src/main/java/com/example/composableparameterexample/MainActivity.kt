@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
@@ -20,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composableparameterexample.ui.theme.ComposableParameterExampleTheme
@@ -67,12 +71,31 @@ private fun MainContent(modifier: Modifier) {
             )
         }
         Text(text = "Slider value: ${sliderValue.toInt()}")
+
+        var ok by remember { mutableStateOf(false) }
+        LabeledComposable(text = "OK") {
+            Checkbox(checked = ok, onCheckedChange = { ok = it })
+        }
+        Text(text = "Checkbox value: $ok")
+
+        // Button on Button: Don't do this at home
+        Button(onClick = { /*TODO*/ }) {
+            Column {
+                Text(text = "My text")
+                Button(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.buttonColors(Color.Red)
+                )
+                { Text(text = "Submit") }
+            }
+        }
     }
 }
 
 @Composable
 fun LabeledComposable(
     text: String,
+    // TODO add location parameter
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
